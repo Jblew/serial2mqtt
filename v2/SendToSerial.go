@@ -2,7 +2,7 @@ package serial2mqtt
 
 // SendToSerial publishes bytes to serial
 func (serial2mqtt *Serial2MQTT) SendToSerial(payload []byte) error {
-	err := serial2mqtt.SendToSerial(payload)
+	err := serial2mqtt.gateway.SendToSerial(payload)
 	if err != nil {
 		return err
 	}
