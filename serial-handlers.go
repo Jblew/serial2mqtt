@@ -86,14 +86,13 @@ func (serial2MQTT *Serial2MQTT) handleSerialFrameReceived(event serialgateway.Ev
 	}
 
 	isoTime := event.FrameReceived.Time.Format(time.RFC3339)
-	time := event.FrameReceived.Time
 	subtopic := event.FrameReceived.Meta
 	payload := event.FrameReceived.Payload
 
 	logMsg := fmt.Sprintf("[%s] Serial frame received: len=%d, subtopic=%s\n", isoTime, len(payload), subtopic)
 	log.Print(logMsg)
 	serial2MQTT.sendLog(logMsg)
-	serial2MQTT.sendFrame(time, subtopic, payload)
+	serial2MQTT.sendFrame(subtopic, payload)
 	go serial2MQTT.notifyOptionalOnFrame(event.FrameReceived.Meta, event.FrameReceived.Payload)
 
 	return nil
@@ -108,7 +107,7 @@ func (serial2MQTT *Serial2MQTT) handleSerialTextReceived(event serialgateway.Eve
 	logMsg := fmt.Sprintf("[%s serial log] %s", isoTime, event.TextReceived.Text)
 	log.Print(logMsg)
 	serial2MQTT.sendLog(logMsg)
-	go serial2MQTT.notifyOptionalOnText(event.FrameReceived.Text)
+	go serial2MQTT.notifyOptionalOnText(event.TextReceived.Text)
 
 	return nil
 }

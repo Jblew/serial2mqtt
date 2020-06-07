@@ -3,23 +3,27 @@ package serial2mqtt
 import "log"
 
 func (serial2MQTT *Serial2MQTT) notifyOptionalOnError(eventError error) {
-	if serial2MQTT.config.handlers.OnError == nil {
+	onError := serial2MQTT.config.Handlers.OnError
+	if onError == nil {
 		return
 	}
-	err := serial2MQTT.config.handlers.OnError(ErrorEvent{
+	evt := ErrorEvent{
 		Serial2MQTT: serial2MQTT,
 		Err:         eventError,
-	})
+	}
+	err := onError(evt)
 	if err != nil {
 		log.Printf("Error in optional OnError handler %v", err)
 	}
 }
 
 func (serial2MQTT *Serial2MQTT) notifyOptionalOnConnected() {
-	if serial2MQTT.config.handlers.OnConnected == nil {
+	onConnected := serial2MQTT.config.Handlers.OnConnected
+
+	if onConnected == nil {
 		return
 	}
-	err := serial2MQTT.config.handlers.OnConnected(ConnectedEvent{
+	err := onConnected(ConnectedEvent{
 		Serial2MQTT: serial2MQTT,
 	})
 	if err != nil {
@@ -28,10 +32,11 @@ func (serial2MQTT *Serial2MQTT) notifyOptionalOnConnected() {
 }
 
 func (serial2MQTT *Serial2MQTT) notifyOptionalOnDisconnected(eventError error) {
-	if serial2MQTT.config.handlers.OnDisconnected == nil {
+	onDisconnected := serial2MQTT.config.Handlers.OnDisconnected
+	if onDisconnected == nil {
 		return
 	}
-	err := serial2MQTT.config.handlers.OnDisconnected(DisconnectedEvent{
+	err := onDisconnected(DisconnectedEvent{
 		Serial2MQTT: serial2MQTT,
 		Err:         eventError,
 	})
@@ -41,10 +46,11 @@ func (serial2MQTT *Serial2MQTT) notifyOptionalOnDisconnected(eventError error) {
 }
 
 func (serial2MQTT *Serial2MQTT) notifyOptionalOnStale() {
-	if serial2MQTT.config.handlers.OnStale == nil {
+	onStale := serial2MQTT.config.Handlers.OnStale
+	if onStale == nil {
 		return
 	}
-	err := serial2MQTT.config.handlers.OnStale(StaleEvent{
+	err := onStale(StaleEvent{
 		Serial2MQTT: serial2MQTT,
 	})
 	if err != nil {
@@ -52,11 +58,12 @@ func (serial2MQTT *Serial2MQTT) notifyOptionalOnStale() {
 	}
 }
 
-func (serial2MQTT *Serial2MQTT) notifyOptionalOnFrame(Meta string, payload []byte) {
-	if serial2mqtt.config.handlers.OnFrame == nil {
+func (serial2MQTT *Serial2MQTT) notifyOptionalOnFrame(meta string, payload []byte) {
+	onFrame := serial2MQTT.config.Handlers.OnFrame
+	if onFrame == nil {
 		return
 	}
-	err := serial2mqtt.config.handlers.OnFrame(FrameEvent{
+	err := onFrame(FrameEvent{
 		Serial2MQTT: serial2MQTT,
 		Meta:        meta,
 		Payload:     payload,
@@ -67,10 +74,11 @@ func (serial2MQTT *Serial2MQTT) notifyOptionalOnFrame(Meta string, payload []byt
 }
 
 func (serial2MQTT *Serial2MQTT) notifyOptionalOnText(text string) {
-	if serial2mqtt.config.handlers.OnText == nil {
+	onText := serial2MQTT.config.Handlers.OnText
+	if onText == nil {
 		return
 	}
-	err := serial2mqtt.config.handlers.OnText(TextEvent{
+	err := onText(TextEvent{
 		Serial2MQTT: serial2MQTT,
 		Text:        text,
 	})
