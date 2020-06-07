@@ -5,7 +5,7 @@ import (
 )
 
 func (serial2MQTT *Serial2MQTT) sendFrame(subtopic string, payload []byte) {
-	topic := fmt.Sprintf("%s/%s", serial2MQTT.config.FrameTopic, subtopic)
+	topic := fmt.Sprintf("%s%s", serial2MQTT.config.FrameTopic, subtopic)
 	serial2MQTT.queue.PublishBin(topic, payload)
 }
 
