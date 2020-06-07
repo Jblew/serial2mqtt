@@ -1,4 +1,4 @@
-package serial2mqtt
+package serialgateway
 
 import "time"
 

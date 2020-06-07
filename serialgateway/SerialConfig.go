@@ -1,6 +1,6 @@
-package serial2mqtt
+package serialgateway
 
-// SerialConfig is configuration of serial port
+// SerialConfig is onfiguration of serial port
 type SerialConfig struct {
 	PortNames       string
 	BaudRate        uint
