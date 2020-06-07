@@ -2,7 +2,7 @@ package serial2mqtt
 
 import (
 	"log"
-	"serialsender/serial2mqtt/serialgateway"
+	"serial2mqtt/serialgateway"
 	"time"
 )
 

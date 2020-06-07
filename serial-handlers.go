@@ -3,7 +3,7 @@ package serial2mqtt
 import (
 	"fmt"
 	"log"
-	"serialsender/serial2mqtt/serialgateway"
+	"serial2mqtt/serialgateway"
 	"time"
 )
 
