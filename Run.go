@@ -5,8 +5,8 @@ import (
 	"github.com/Jblew/serial2mqtt/serialgateway"
 )
 
-// Start is starting all event loops
-func Start(config Config) Serial2MQTT {
+// Run is starting all event loops
+func Run(config Config) {
 	queue := mqttqueue.Start(config.MQTTPublish)
 	serialChan := make(chan serialgateway.Event)
 	serialConfig := serialgateway.Config(config.Serial)
@@ -18,6 +18,5 @@ func Start(config Config) Serial2MQTT {
 		gateway,
 	}
 
-	go serial2mqtt.runSerialEventHandlingLoop(serialChan)
-	return serial2mqtt
+	serial2mqtt.runSerialEventHandlingLoop(serialChan)
 }
