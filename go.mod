@@ -1,4 +1,4 @@
-module serial2mqtt
+module github.com/Jblew/serial2mqtt
 
 go 1.14
 
