@@ -1,8 +1,8 @@
 package serial2mqtt
 
 import (
-	"serial2mqtt/mqttqueue"
-	"serial2mqtt/serialgateway"
+	"github.com/Jblew/serial2mqtt/mqttqueue"
+	"github.com/Jblew/serial2mqtt/serialgateway"
 )
 
 // Start is starting all event loops

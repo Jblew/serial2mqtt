@@ -3,8 +3,9 @@ package serial2mqtt
 import (
 	"fmt"
 	"log"
-	"serial2mqtt/serialgateway"
 	"time"
+
+	"github.com/Jblew/serial2mqtt/serialgateway"
 )
 
 func (serial2MQTT *Serial2MQTT) handleSerialEvent(event serialgateway.Event) error {
