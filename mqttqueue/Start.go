@@ -7,7 +7,7 @@ import (
 )
 
 // Start instationates and starts MQTTQueue
-func Start(mqttPublish MQTTPublish) MQTTQueue {
+func Start(mqttPublish func(topic string, payload []byte) error) MQTTQueue {
 	messageQueue := queue.New()
 	queue := MQTTQueue{
 		mqttPublish,

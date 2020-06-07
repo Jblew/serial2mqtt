@@ -6,6 +6,6 @@ import (
 
 // MQTTQueue is a thread safe, failproof mqtt sender
 type MQTTQueue struct {
-	mqttPublish  MQTTPublish
+	mqttPublish  func(topic string, payload []byte) error
 	messageQueue *queue.Queue
 }
