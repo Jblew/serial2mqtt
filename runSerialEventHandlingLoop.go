@@ -19,6 +19,7 @@ func (serial2MQTT *Serial2MQTT) handleEvent(event serialgateway.Event) {
 	err := serial2MQTT.handleSerialEvent(event)
 	if err != nil {
 		log.Printf("Error while handling serial event %v", err)
+		go serial2MQTT.notifyOptionalOnError(err)
 	}
 	return nil
 }

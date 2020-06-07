@@ -34,6 +34,7 @@ func (serial2MQTT *Serial2MQTT) handleSerialError(event serialgateway.Event) err
 	logMsg := fmt.Sprintf("[%s] Serial error: %v", isoTime, event.Error.Err)
 	log.Print(logMsg)
 	serial2MQTT.sendLog(logMsg)
+	go serial2MQTT.notifyOptionalOnError(event.Error.Err)
 
 	return nil
 }
@@ -46,6 +47,7 @@ func (serial2MQTT *Serial2MQTT) handleSerialConnected(event serialgateway.Event)
 	logMsg := fmt.Sprintf("[%s] Serial connected", isoTime)
 	log.Print(logMsg)
 	serial2MQTT.sendLog(logMsg)
+	go serial2MQTT.notifyOptionalOnConnected()
 
 	return nil
 }
@@ -59,6 +61,7 @@ func (serial2MQTT *Serial2MQTT) handleSerialDisconnected(event serialgateway.Eve
 	logMsg := fmt.Sprintf("[%s] Serial disconnected, err: %v", isoTime, event.Disconnected.Err)
 	log.Print(logMsg)
 	serial2MQTT.sendLog(logMsg)
+	go serial2MQTT.notifyOptionalOnDisconnected(event.Disconnected.Err)
 
 	return nil
 }
@@ -72,6 +75,7 @@ func (serial2MQTT *Serial2MQTT) handleSerialStale(event serialgateway.Event) err
 	logMsg := fmt.Sprintf("[%s] Serial is stale", isoTime)
 	log.Print(logMsg)
 	serial2MQTT.sendLog(logMsg)
+	go serial2MQTT.notifyOptionalOnStale()
 
 	return nil
 }
@@ -90,6 +94,7 @@ func (serial2MQTT *Serial2MQTT) handleSerialFrameReceived(event serialgateway.Ev
 	log.Print(logMsg)
 	serial2MQTT.sendLog(logMsg)
 	serial2MQTT.sendFrame(time, subtopic, payload)
+	go serial2MQTT.notifyOptionalOnFrame(event.FrameReceived.Meta, event.FrameReceived.Payload)
 
 	return nil
 }
@@ -103,6 +108,7 @@ func (serial2MQTT *Serial2MQTT) handleSerialTextReceived(event serialgateway.Eve
 	logMsg := fmt.Sprintf("[%s serial log] %s", isoTime, event.TextReceived.Text)
 	log.Print(logMsg)
 	serial2MQTT.sendLog(logMsg)
+	go serial2MQTT.notifyOptionalOnText(event.FrameReceived.Text)
 
 	return nil
 }
