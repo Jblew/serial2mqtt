@@ -6,7 +6,6 @@ import (
 )
 
 func (queue *MQTTQueue) publishOrPushBack(msg MQTTMessage) {
-	// log.Printf("Publishing %v\n", msg)
 	err := queue.publishToMQTT(msg)
 	if err != nil {
 		log.Printf("Error while sending message(%v): %v. Pushing back after 500ms", msg, err)

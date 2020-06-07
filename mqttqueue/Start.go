@@ -3,12 +3,11 @@ package mqttqueue
 import (
 	"time"
 
-	MQTT "github.com/eclipse/paho.mqtt.golang"
 	"github.com/sheerun/queue"
 )
 
 // Start instationates and starts MQTTQueue
-func Start(mqttClient MQTT.Client) MQTTQueue {
+func Start(mqttClient MQTTClient) MQTTQueue {
 	messageQueue := queue.New()
 	queue := MQTTQueue{
 		mqttClient,

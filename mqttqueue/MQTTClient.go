@@ -1,4 +1,4 @@
-package serial2mqtt
+package mqttqueue
 
 // MQTTClient is an interface that allows publishing MQTT messages
 type MQTTClient interface {
