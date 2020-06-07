@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func (gateway *serialGateway) connectReadLoop() {
+func (gateway *SerialGateway) connectReadLoop() {
 	for {
 		err := gateway.openConnection()
 		if err != nil {

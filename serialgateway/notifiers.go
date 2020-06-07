@@ -1,6 +1,6 @@
 package serialgateway
 
-func (gateway *serialGateway) notifyError(err error) {
+func (gateway *SerialGateway) notifyError(err error) {
 	evt := emptyEvent()
 	evt.Error = &EventError{
 		Time: gateway.clock.GetTime(),
@@ -9,7 +9,7 @@ func (gateway *serialGateway) notifyError(err error) {
 	gateway.outputChan <- evt
 }
 
-func (gateway *serialGateway) notifyTextReceived(text string) {
+func (gateway *SerialGateway) notifyTextReceived(text string) {
 	evt := emptyEvent()
 	evt.TextReceived = &EventTextReceived{
 		Time: gateway.clock.GetTime(),
@@ -18,7 +18,7 @@ func (gateway *serialGateway) notifyTextReceived(text string) {
 	gateway.outputChan <- evt
 }
 
-func (gateway *serialGateway) notifyFrameReceived(meta string, payload []byte) {
+func (gateway *SerialGateway) notifyFrameReceived(meta string, payload []byte) {
 	evt := emptyEvent()
 	evt.FrameReceived = &EventFrameReceived{
 		Time:    gateway.clock.GetTime(),
@@ -28,7 +28,7 @@ func (gateway *serialGateway) notifyFrameReceived(meta string, payload []byte) {
 	gateway.outputChan <- evt
 }
 
-func (gateway *serialGateway) notifyConnected() {
+func (gateway *SerialGateway) notifyConnected() {
 	evt := emptyEvent()
 	evt.Connected = &EventConnected{
 		Time: gateway.clock.GetTime(),
@@ -36,7 +36,7 @@ func (gateway *serialGateway) notifyConnected() {
 	gateway.outputChan <- evt
 }
 
-func (gateway *serialGateway) notifyDisconnected(err error) {
+func (gateway *SerialGateway) notifyDisconnected(err error) {
 	evt := emptyEvent()
 	evt.Disconnected = &EventDisconnected{
 		Time: gateway.clock.GetTime(),
@@ -45,7 +45,7 @@ func (gateway *serialGateway) notifyDisconnected(err error) {
 	gateway.outputChan <- evt
 }
 
-func (gateway *serialGateway) notifyStale() {
+func (gateway *SerialGateway) notifyStale() {
 	evt := emptyEvent()
 	evt.Stale = &EventStale{
 		Time: gateway.clock.GetTime(),

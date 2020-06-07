@@ -9,7 +9,7 @@ import (
 	"github.com/jacobsa/go-serial/serial"
 )
 
-func (gateway *serialGateway) openConnection() error {
+func (gateway *SerialGateway) openConnection() error {
 	config := gateway.config
 	portNames := getPortNames(config.PortNames)
 

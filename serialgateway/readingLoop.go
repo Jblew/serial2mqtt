@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-func (gateway *serialGateway) readingLoop() error {
+func (gateway *SerialGateway) readingLoop() error {
 	bufReader := bufio.NewReader(gateway.currentConnection)
 	for {
 		err := gateway.doRead(bufReader)
@@ -20,7 +20,7 @@ func (gateway *serialGateway) readingLoop() error {
 	}
 }
 
-func (gateway *serialGateway) doRead(bufReader *bufio.Reader) error {
+func (gateway *SerialGateway) doRead(bufReader *bufio.Reader) error {
 	line, err := bufReader.ReadString('\n')
 	if err != nil {
 		return err
@@ -36,7 +36,7 @@ func (gateway *serialGateway) doRead(bufReader *bufio.Reader) error {
 	return nil
 }
 
-func (gateway *serialGateway) readFrame(bufReader *bufio.Reader, rawMeta string) error {
+func (gateway *SerialGateway) readFrame(bufReader *bufio.Reader, rawMeta string) error {
 	head, err := parseFrameHead(rawMeta)
 	if err != nil {
 		gateway.notifyError(err)

@@ -2,7 +2,8 @@ package serialgateway
 
 import "fmt"
 
-func (gateway *serialGateway) SendToSerial(payload []byte) error {
+// SendToSerial publishes bytes to serial
+func (gateway *SerialGateway) SendToSerial(payload []byte) error {
 	if gateway.currentConnection == nil {
 		return fmt.Errorf("Cannot publish. Serial connection not yet initialized")
 	}
