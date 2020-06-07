@@ -1,6 +1,6 @@
 package serialgateway
 
-// Config is onfiguration of serial port
+// Config is configuration of serial port
 type Config struct {
 	PortNames       string
 	BaudRate        uint

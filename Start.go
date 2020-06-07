@@ -7,9 +7,10 @@ import (
 
 // Start is starting all event loops
 func Start(config Config) Serial2MQTT {
-	queue := mqttqueue.Start(config.MQTTClient)
+	queue := mqttqueue.Start(config.MQTTPublish)
 	serialChan := make(chan serialgateway.Event)
-	gateway := serialgateway.Start(config.Serial, config.Clock, serialChan)
+	serialConfig := serialgateway.Config(config.Serial)
+	gateway := serialgateway.Start(serialConfig, config.Clock, serialChan)
 
 	serial2mqtt := Serial2MQTT{
 		config,

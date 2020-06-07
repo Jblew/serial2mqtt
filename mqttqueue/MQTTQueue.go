@@ -6,6 +6,6 @@ import (
 
 // MQTTQueue is a thread safe, failproof mqtt sender
 type MQTTQueue struct {
-	mqttClient   MQTTClient
+	mqttPublish  MQTTPublish
 	messageQueue *queue.Queue
 }

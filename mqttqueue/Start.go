@@ -7,10 +7,10 @@ import (
 )
 
 // Start instationates and starts MQTTQueue
-func Start(mqttClient MQTTClient) MQTTQueue {
+func Start(mqttPublish MQTTPublish) MQTTQueue {
 	messageQueue := queue.New()
 	queue := MQTTQueue{
-		mqttClient,
+		mqttPublish,
 		messageQueue,
 	}
 
