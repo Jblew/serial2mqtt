@@ -1,9 +1,8 @@
 package serial2mqtt
 
 import (
-	"serialsender/mqttqueue"
+	"serialsender/serial2mqtt/mqttqueue"
 	"serialsender/serial2mqtt/serialgateway"
-	"serialsender/serialgateway"
 )
 
 // Start is starting all event loops

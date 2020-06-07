@@ -3,10 +3,10 @@ package serial2mqtt
 import "log"
 
 func (serial2MQTT *Serial2MQTT) notifyOptionalOnError(eventError error) {
-	if serial2mqtt.config.handlers.OnError == nil {
+	if serial2MQTT.config.handlers.OnError == nil {
 		return
 	}
-	err := serial2mqtt.config.handlers.OnError(ErrorEvent{
+	err := serial2MQTT.config.handlers.OnError(ErrorEvent{
 		Serial2MQTT: serial2MQTT,
 		Err:         eventError,
 	})
@@ -16,10 +16,10 @@ func (serial2MQTT *Serial2MQTT) notifyOptionalOnError(eventError error) {
 }
 
 func (serial2MQTT *Serial2MQTT) notifyOptionalOnConnected() {
-	if serial2mqtt.config.handlers.OnConnected == nil {
+	if serial2MQTT.config.handlers.OnConnected == nil {
 		return
 	}
-	err := serial2mqtt.config.handlers.OnConnected(ConnectedEvent{
+	err := serial2MQTT.config.handlers.OnConnected(ConnectedEvent{
 		Serial2MQTT: serial2MQTT,
 	})
 	if err != nil {
@@ -28,10 +28,10 @@ func (serial2MQTT *Serial2MQTT) notifyOptionalOnConnected() {
 }
 
 func (serial2MQTT *Serial2MQTT) notifyOptionalOnDisconnected(eventError error) {
-	if serial2mqtt.config.handlers.OnDisconnected == nil {
+	if serial2MQTT.config.handlers.OnDisconnected == nil {
 		return
 	}
-	err := serial2mqtt.config.handlers.OnDisconnected(DisconnectedEvent{
+	err := serial2MQTT.config.handlers.OnDisconnected(DisconnectedEvent{
 		Serial2MQTT: serial2MQTT,
 		Err:         eventError,
 	})
@@ -41,10 +41,10 @@ func (serial2MQTT *Serial2MQTT) notifyOptionalOnDisconnected(eventError error) {
 }
 
 func (serial2MQTT *Serial2MQTT) notifyOptionalOnStale() {
-	if serial2mqtt.config.handlers.OnStale == nil {
+	if serial2MQTT.config.handlers.OnStale == nil {
 		return
 	}
-	err := serial2mqtt.config.handlers.OnStale(StaleEvent{
+	err := serial2MQTT.config.handlers.OnStale(StaleEvent{
 		Serial2MQTT: serial2MQTT,
 	})
 	if err != nil {

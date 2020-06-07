@@ -7,7 +7,7 @@ import (
 
 // Config for serial2mqtt gateway
 type Config struct {
-	Serial     serialgateway.SerialConfig
+	Serial     serialgateway.Config
 	Clock      serialgateway.Clock
 	MQTTClient mqttqueue.MQTTClient
 	Handlers   Handlers

@@ -1,4 +1,4 @@
-package app
+package serial2mqtt
 
 import (
 	"fmt"

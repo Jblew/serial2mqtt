@@ -1,9 +1,8 @@
-package app
+package serial2mqtt
 
 import (
 	"log"
 	"serialsender/serial2mqtt/serialgateway"
-	"serialsender/serialgateway"
 	"time"
 )
 
