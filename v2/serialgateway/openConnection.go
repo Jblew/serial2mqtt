@@ -6,6 +6,7 @@ import (
 	"log"
 	"strings"
 
+	"github.com/Jblew/serial2mqtt/v2/serialgateway/publisher"
 	"github.com/jacobsa/go-serial/serial"
 )
 
@@ -18,7 +19,10 @@ func (gateway *SerialGateway) openConnection() error {
 		return err
 	}
 
-	gateway.currentConnection = &currentConnection
+	publisher := publisher.New(currentConnection)
+
+	gateway.currentConnection = currentConnection
+	gateway.publisher = &publisher
 	log.Printf("<><><> Current connection set: %v", gateway.currentConnection)
 
 	return nil

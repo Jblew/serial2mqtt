@@ -7,14 +7,13 @@ import (
 
 // SendToSerial publishes bytes to serial
 func (gateway *SerialGateway) SendToSerial(payload []byte) error {
-	conn := *gateway.currentConnection
-	log.Printf("<><><> Current connection accessed %v", conn)
+	log.Printf("<><><> Current connection accessed %v", gateway.currentConnection)
 
-	if conn == nil {
-		return fmt.Errorf("Cannot publish. Serial connection not yet initialized")
+	if gateway.publisher == nil {
+		return fmt.Errorf("Cannot publish. Serial publisher not yet initialized")
 	}
 
-	_, err := conn.Write(payload)
+	err := gateway.publisher.Publish(payload)
 	if err != nil {
 		return err
 	}
