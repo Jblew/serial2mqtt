@@ -17,7 +17,7 @@ func (gateway *SerialGateway) connectReadLoop() {
 		}
 		gateway.notifyConnected()
 
-		err = gateway.readingLoop()
+		err = gateway.rwLoop()
 		if err != nil {
 			gateway.notifyDisconnected(err)
 		}

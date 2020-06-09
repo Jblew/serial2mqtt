@@ -6,18 +6,19 @@ import (
 	"time"
 )
 
-func (gateway *SerialGateway) readingLoop() error {
+func (gateway *SerialGateway) rwLoop() error {
 	bufReader := bufio.NewReader(gateway.currentConnection)
 	for {
-		err := gateway.doRead(bufReader)
+		err := gateway.blockingRead(bufReader)
 		if err != nil {
 			return err
 		}
+		gateway.publisher.PublishFromQueue()
 		time.Sleep(10 * time.Millisecond)
 	}
 }
 
-func (gateway *SerialGateway) doRead(bufReader *bufio.Reader) error {
+func (gateway *SerialGateway) blockingRead(bufReader *bufio.Reader) error {
 	line, err := bufReader.ReadString('\n')
 	if err != nil {
 		return err
