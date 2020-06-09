@@ -4,7 +4,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/Jblew/serial2mqtt/serialgateway"
+	"github.com/Jblew/serial2mqtt/v2/serialgateway"
 )
 
 func (serial2MQTT *Serial2MQTT) runSerialEventHandlingLoop(serialChan chan serialgateway.Event) error {
