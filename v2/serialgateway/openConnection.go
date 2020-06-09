@@ -19,10 +19,8 @@ func (gateway *SerialGateway) openConnection() error {
 		return err
 	}
 
-	publisher := publisher.New(currentConnection)
-
 	gateway.currentConnection = currentConnection
-	gateway.publisher = &publisher
+	gateway.publisher = publisher.New(currentConnection)
 	log.Printf("<><><> Current connection set: %v", gateway.currentConnection)
 
 	return nil

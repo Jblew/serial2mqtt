@@ -12,5 +12,5 @@ type SerialGateway struct {
 	config            Config
 	outputChan        chan Event
 	currentConnection io.ReadWriteCloser
-	publisher         *publisher.Publisher
+	publisher         publisher.Publisher
 }
