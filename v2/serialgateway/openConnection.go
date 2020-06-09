@@ -18,6 +18,7 @@ func (gateway *SerialGateway) openConnection() error {
 		return err
 	}
 
+	log.Println("<><><> Current connection set")
 	gateway.currentConnection = currentConnection
 
 	return nil
