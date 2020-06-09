@@ -10,8 +10,9 @@ func Run(config Config) {
 	queue := mqttqueue.Start(config.MQTTPublish)
 	serialChan := make(chan serialgateway.Event)
 	serialConfig := serialgateway.Config(config.Serial)
-	gateway := serialgateway.Start(serialConfig, config.Clock, serialChan)
+	gatewayV := serialgateway.Start(serialConfig, config.Clock, serialChan)
 
+	gateway := &gatewayV
 	serial2mqtt := Serial2MQTT{
 		config,
 		queue,

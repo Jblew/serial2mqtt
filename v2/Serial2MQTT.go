@@ -9,5 +9,5 @@ import (
 type Serial2MQTT struct {
 	config  Config
 	queue   mqttqueue.MQTTQueue
-	gateway serialgateway.SerialGateway
+	gateway *serialgateway.SerialGateway
 }
