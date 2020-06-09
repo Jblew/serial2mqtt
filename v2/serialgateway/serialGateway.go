@@ -9,5 +9,5 @@ type SerialGateway struct {
 	clock             Clock
 	config            Config
 	outputChan        chan Event
-	currentConnection io.ReadWriteCloser
+	currentConnection *io.ReadWriteCloser
 }

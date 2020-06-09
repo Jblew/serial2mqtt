@@ -10,7 +10,7 @@ import (
 )
 
 func (gateway *SerialGateway) readingLoop() error {
-	bufReader := bufio.NewReader(gateway.currentConnection)
+	bufReader := bufio.NewReader(*gateway.currentConnection)
 	for {
 		err := gateway.doRead(bufReader)
 		if err != nil {
