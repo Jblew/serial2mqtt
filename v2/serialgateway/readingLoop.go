@@ -18,13 +18,6 @@ func (gateway *SerialGateway) readingLoop() error {
 }
 
 func (gateway *SerialGateway) doRead(bufReader *bufio.Reader) error {
-	if bufReader.Buffered() == 0 {
-		return nil
-	}
-	return gateway.blockingRead(bufReader)
-}
-
-func (gateway *SerialGateway) blockingRead(bufReader *bufio.Reader) error {
 	line, err := bufReader.ReadString('\n')
 	if err != nil {
 		return err
