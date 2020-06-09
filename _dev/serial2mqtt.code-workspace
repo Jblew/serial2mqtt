@@ -1,14 +1,20 @@
 {
   "folders": [
     {
-      "path": ".."
+      "path": "..",
+    },
+    {
+      "path": "../v2"
     }
   ],
   "settings": {
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
     "files.insertFinalNewline": true,
-    "editor.rulers": [96, 100],
+    "editor.rulers": [
+      96,
+      100
+    ],
     "editor.minimap.maxColumn": 90,
     "editor.formatOnPaste": false,
     "editor.formatOnType": false,
@@ -52,7 +58,9 @@
     "typescript.updateImportsOnFileMove.enabled": "always",
     "prettier.disableLanguages": [],
     "liveshare.featureSet": "insiders",
-    "todo-tree.general.tags": ["TASKTODO"],
+    "todo-tree.general.tags": [
+      "TASKTODO"
+    ],
     "todo-tree.highlights.customHighlight": {
       "TASKTODO": {
         "icon": "alert",
