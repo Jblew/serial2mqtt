@@ -7,7 +7,8 @@ import (
 
 // Serial2MQTT is main class for serial2mqtt lib
 type Serial2MQTT struct {
-	config  Config
-	queue   mqttqueue.MQTTQueue
-	gateway *serialgateway.SerialGateway
+	config      Config
+	queue       mqttqueue.MQTTQueue
+	gateway     *serialgateway.SerialGateway
+	publishChan chan []byte
 }
