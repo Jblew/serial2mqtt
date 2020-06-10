@@ -2,7 +2,6 @@ package serialgateway
 
 import (
 	"io"
-	"log"
 )
 
 func (gateway *SerialGateway) nonblockingWrite(writer io.Writer) error {
@@ -19,6 +18,5 @@ func writeToSerial(writer io.Writer, payload []byte) error {
 	if err != nil {
 		return err
 	}
-	log.Printf("Written to serial %v", payload)
 	return nil
 }

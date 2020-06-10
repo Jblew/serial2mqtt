@@ -19,8 +19,6 @@ func (gateway *SerialGateway) openConnection() error {
 	}
 
 	gateway.currentConnection = currentConnection
-	log.Printf("<><><> Current connection set: %v", gateway.currentConnection)
-
 	return nil
 }
 
@@ -38,6 +36,7 @@ func tryAllPorts(config Config, portNames []string) (io.ReadWriteCloser, error) 
 			log.Printf("Connection to port %s failed: %v", portName, err)
 			lastError = err
 		} else {
+			log.Printf("Successful connection to port %s", portName)
 			return connection, nil
 		}
 	}
