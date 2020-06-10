@@ -20,4 +20,5 @@ func writeToSerial(writer io.Writer, payload []byte) {
 	if err != nil {
 		log.Printf("Error while writing to serial %v", err)
 	}
+	log.Printf("Written to serial %v", payload)
 }
