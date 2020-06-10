@@ -2,14 +2,13 @@ package serialgateway
 
 import (
 	"bufio"
-	"io"
-	"log"
 	"strings"
 	"time"
 )
 
 func (gateway *SerialGateway) rwLoop() error {
 	bufReader := bufio.NewReader(gateway.currentConnection)
+	// TODO make separate loop for writing (so that writing does not wait for reading)
 	for {
 		gateway.nonblockingWrite(gateway.currentConnection)
 		err := gateway.blockingRead(bufReader)
@@ -34,14 +33,4 @@ func (gateway *SerialGateway) blockingRead(bufReader *bufio.Reader) error {
 		gateway.notifyTextReceived(line)
 	}
 	return nil
-}
-
-func (gateway *SerialGateway) nonblockingWrite(writer io.Writer) error {
-	select {
-	case payload := <-gateway.publishChan:
-		log.Printf("ATTEMPT TO WRITE len=%d", len(payload))
-		return nil
-	default:
-		return nil
-	}
 }
