@@ -8,17 +8,17 @@ import (
 func (gateway *SerialGateway) nonblockingWrite(writer io.Writer) error {
 	select {
 	case payload := <-gateway.publishChan:
-		writeToSerial(writer, payload)
-		return nil
+		return writeToSerial(writer, payload)
 	default:
 		return nil
 	}
 }
 
-func writeToSerial(writer io.Writer, payload []byte) {
+func writeToSerial(writer io.Writer, payload []byte) error {
 	_, err := writer.Write(payload)
 	if err != nil {
-		log.Printf("Error while writing to serial %v", err)
+		return err
 	}
 	log.Printf("Written to serial %v", payload)
+	return nil
 }

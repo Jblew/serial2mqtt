@@ -7,13 +7,31 @@ import (
 )
 
 func (gateway *SerialGateway) rwLoop() error {
+	readErrorChan := make(chan error)
+	go gateway.readLoop(readErrorChan)
+	for {
+		err := gateway.nonblockingWrite(gateway.currentConnection)
+		if err != nil {
+			return err
+		}
+		select {
+		case readError := <-readErrorChan:
+			return readError
+		default:
+		}
+
+		time.Sleep(10 * time.Millisecond)
+	}
+}
+
+func (gateway *SerialGateway) readLoop(readErrorChan chan error) {
 	bufReader := bufio.NewReader(gateway.currentConnection)
-	// TODO make separate loop for writing (so that writing does not wait for reading)
 	for {
 		gateway.nonblockingWrite(gateway.currentConnection)
 		err := gateway.blockingRead(bufReader)
 		if err != nil {
-			return err
+			readErrorChan <- err
+			return
 		}
 
 		time.Sleep(10 * time.Millisecond)
