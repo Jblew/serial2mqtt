@@ -13,7 +13,7 @@ func Run(config Config) {
 	gatewayV := serialgateway.Start(serialConfig, config.Clock, serialChan)
 
 	gateway := &gatewayV
-	serial2mqtt := Serial2MQTT{
+	serial2mqtt := &Serial2MQTT{
 		config,
 		queue,
 		gateway,

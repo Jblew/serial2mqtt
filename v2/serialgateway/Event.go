@@ -48,7 +48,8 @@ func (evt EventFrameReceived) String() string {
 
 // EventConnected - serial bus has connected
 type EventConnected struct {
-	Time time.Time
+	Time    time.Time
+	Gateway *SerialGateway
 }
 
 func (evt EventConnected) String() string {

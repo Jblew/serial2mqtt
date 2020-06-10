@@ -31,7 +31,8 @@ func (gateway *SerialGateway) notifyFrameReceived(meta string, payload []byte) {
 func (gateway *SerialGateway) notifyConnected() {
 	evt := emptyEvent()
 	evt.Connected = &EventConnected{
-		Time: gateway.clock.GetTime(),
+		Time:    gateway.clock.GetTime(),
+		Gateway: gateway,
 	}
 	gateway.outputChan <- evt
 }
