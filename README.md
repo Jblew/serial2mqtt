@@ -10,3 +10,8 @@ Golang library that allows sending serial frames/input to MQTT
 ## Example setup
 
 ![Example setup](./doc/example-setup.png)
+
+---
+
+Made with ❤️ by [Jędrzej Lewandowski](https://jedrzej.lewandowski.doctor/).
+
